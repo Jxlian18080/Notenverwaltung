@@ -38,7 +38,5 @@ public class Note {
         return unternote;
     }
 
-    public void setUnternote(ArrayList<Unternote> unternote) {
-        this.unternote = unternote;
-    }
+    public void setUnternote(ArrayList<Unternote> unternote) {this.unternote = unternote;}
 }
