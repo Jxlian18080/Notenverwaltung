@@ -2,41 +2,45 @@ import java.util.ArrayList;
 
 public class Note {
 
+    private String name;
+
     private int wert;
 
-    private ArrayList<Unternote> unternote;
+    private ArrayList<Note> unternoten;
 
-    Unterrichtsfach unterrichtsfach;
-
-    Note(Unterrichtsfach unterrichtsfach){
-        this.unterrichtsfach = unterrichtsfach;
-
-
+    public Note(String name){
+        this.name = name;
     }
 
-    public void addUnternote(Unternote unternote) {
 
+    public void addUnternote(Note unternote) {
+        //todo must be implemented
     }
 
     public void removeUnternote(String name) {
 
+        //todo must be implemented
     }
 
     public void noteAusgeben() {
 
+        //todo must be implemented
     }
 
     public int getWert() {
-        return wert;
+        return this.wert;
     }
 
     public void setWert(int wert) {
         this.wert = wert;
     }
 
-    public ArrayList<Unternote> getUnternote() {
-        return unternote;
+    public String getName(){
+        return this.name;
     }
 
-    public void setUnternote(ArrayList<Unternote> unternote) {this.unternote = unternote;}
+    public void setName(String name){
+        this.name = name;
+    }
+
 }

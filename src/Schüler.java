@@ -7,7 +7,7 @@ public class Schüler {
 
    private ArrayList<Unterrichtsfach> fächer;
 
-   private ArrayList<Note> noten;
+   private ArrayList<FachNote> noten;
 
    public Schüler (String vorname, String nachname){
 
@@ -16,7 +16,7 @@ public class Schüler {
       this.nachname = nachname;
    }
 
-   public void addNote(Note note){
+   public void addNote(FachNote note){
 
    }
    public void removeNote(Unterrichtsfach unterrichtsfach){
@@ -56,11 +56,11 @@ public class Schüler {
       return this;
    }
 
-   public ArrayList<Note> getNoten() {
+   public ArrayList<FachNote> getNoten() {
       return noten;
    }
 
-   public Schüler setNoten(ArrayList<Note> noten) {
+   public Schüler setNoten(ArrayList<FachNote> noten) {
       this.noten = noten;
       return this;
    }

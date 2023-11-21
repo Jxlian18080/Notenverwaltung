@@ -1,7 +1,6 @@
 public class Notensystem {
 
     private String name;
-
     private int besteNote;
     private int schlechtesteNote;
     private int inkrement;
