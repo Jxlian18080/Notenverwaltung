@@ -7,25 +7,23 @@ public class Notensystem1Bis6 extends Notensystem {
     @Override
     public double toPercent(int note) {
 
-        if (note == 6) {
-           return 7.5;
-        }else if(note == 5){
-            return 30;
-        }else if(note == 4){
-            return 52;
-        }else if(note == 3){
-            return 68.5;
-        }else if(note == 2){
-            return 87.5;
-        }else if (note == 1){
-            return 98;
-        } else {
-            return -1;
-        }
-    }
+        switch (note) {
 
-    public static void main(String[] args) {
-        Notensystem1Bis6 notensystem = new Notensystem1Bis6();
-        System.out.printf(""+notensystem.toPercent(10));
+            case 6:
+                return 7.5;
+            case 5:
+                return 30;
+            case 4:
+                return 52;
+            case 3:
+                return 68.5;
+            case 2:
+                return 87.5;
+            case 1:
+                return 98;
+            default:
+                System.err.println("Note ist nicht zwischen 1 und 6");
+                return -1;
+        }
     }
 }

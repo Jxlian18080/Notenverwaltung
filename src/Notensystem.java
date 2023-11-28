@@ -1,9 +1,9 @@
 public abstract class Notensystem {
 
     private String name;
-    private int besteNote;//1
-    private int schlechtesteNote;//6
-    private int inkrement;//1
+    private int besteNote;
+    private int schlechtesteNote;
+    private int inkrement;
 
     public Notensystem(String name, int besteNote, int schlechtesteNote, int inkrement) {
         this.name = name;
