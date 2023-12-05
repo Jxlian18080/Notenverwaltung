@@ -14,4 +14,8 @@ public abstract class Notensystem {
 
      public abstract double toPercent(int note);
 
+    public String getName() {
+        return name;
+    }
+
 }
