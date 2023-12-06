@@ -35,10 +35,6 @@ public class Schulklasse {
 
         schüler = bestimmeSchüler();
 
-        for (Schüler aktschüler : schüler) {
-            System.out.println(aktschüler.getVorname() + " " + aktschüler.getNachname());
-        }
-
     }
 
     private Notensystem bestimmeNotensystem() {
