@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Schüler {
 
@@ -7,13 +8,30 @@ public class Schüler {
 
    private ArrayList<Unterrichtsfach> fächer;
 
-   private ArrayList<FachNote> noten;
+   private ArrayList<FachNote> fachnoten;
 
-   public Schüler (String vorname, String nachname){
+   Random random = new Random();
+
+   public Schüler (String vorname, String nachname, ArrayList<FachNote> fachnoten){
 
       this.vorname = vorname;
-
       this.nachname = nachname;
+      this.fachnoten = fachnoten;
+   }
+
+   public Schüler() {
+
+   }
+
+   public Schüler bestimmeSchüler(Notensystem notensystem, ArrayList<Unterrichtsfach> fächer) {
+      Schülernamen schülernamen = new Schülernamen();
+      FachNote fachNote = new FachNote();
+      String vorname = schülernamen.getVornamen().get(random.nextInt(20));
+      String nachname = schülernamen.getNachnamen().get(random.nextInt(20));
+
+      Schüler newSchüler = new Schüler(vorname, nachname, fachNote.bestimmeFachnoten(notensystem, fächer));
+
+      return newSchüler;
    }
 
    public void addNote(FachNote note){
@@ -56,12 +74,12 @@ public class Schüler {
       return this;
    }
 
-   public ArrayList<FachNote> getNoten() {
-      return noten;
+   public ArrayList<FachNote> getFachnoten() {
+      return fachnoten;
    }
 
-   public Schüler setNoten(ArrayList<FachNote> noten) {
-      this.noten = noten;
+   public Schüler setFachnoten(ArrayList<FachNote> fachnoten) {
+      this.fachnoten = fachnoten;
       return this;
    }
 

@@ -1,9 +1,14 @@
+import java.util.Random;
+
 public abstract class Notensystem {
 
     private String name;
+
     private int besteNote;
     private int schlechtesteNote;
     private int inkrement;
+
+    Random random = new Random();
 
     public Notensystem(String name, int besteNote, int schlechtesteNote, int inkrement) {
         this.name = name;
@@ -16,6 +21,14 @@ public abstract class Notensystem {
 
     public String getName() {
         return name;
+    }
+
+    public int getBesteNote() {
+        return besteNote;
+    }
+
+    public int getSchlechtesteNote() {
+        return schlechtesteNote;
     }
 
 }

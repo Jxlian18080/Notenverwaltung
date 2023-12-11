@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class Main {
 
@@ -7,165 +8,45 @@ public class Main {
 
     Scanner scan = new Scanner(System.in);
 
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
     public static void main(String[] args) {
 
         Main main = new Main();
         Schulklasse schulklasse = new Schulklasse();
-        main.erstelleKlasse();
-
-    }
-
-    private void erstelleKlasse() {
-
-        System.out.println("Geben Sie den Name der Klasse ein");
-        String name = scan.nextLine();
-
-        Notensystem notensystem = bestimmeNotensystem();
-
-        ArrayList<Unterrichtsfach> fächer = bestimmeFächer();
-
-        ArrayList<Schüler> schüler = bestimmeSchüler();
-
-        schulklassen.add(new Schulklasse(name, fächer, notensystem, schüler));
-
-    }
-
-    private Notensystem bestimmeNotensystem() {
-        String userInput;
-
-        System.out.println("Welches Notensystem wollen Sie verwenden?\n[1Bis6], [15Bis0], [100Bis0]");
-
-        do {
-
-            userInput = scan.nextLine().toLowerCase().replace(" ", "");
-
-            switch (userInput) {
-
-                case "1bis6":
-                    return new Notensystem1Bis6();
-
-                case "15bis0":
-                    return new Notensystem15Bis0();
-
-                case "100bis0":
-                    return new Notensystem100Bis0();
-
-                default:
-                    System.out.println("Dieses Notensystem existiert nicht!");
-                    System.out.println("Bitte geben Sie '1Bis6', '15Bis0' oder '100Bis0' ein");
-
-            }
-        } while (1 < 2);
-    }
-
-    private ArrayList<Unterrichtsfach> bestimmeFächer() {
-        ArrayList<Unterrichtsfach> newFächer = new ArrayList<>();
-        String userInput;
-        boolean doAnotherIteration;
-
-        System.out.println("Geben Sie ein Fach ein, dass Sie hinzufügen wollen");
-
-        userInput = scan.nextLine();
-        newFächer.add(new Unterrichtsfach(userInput));
-        System.out.println(userInput + " wurde hinzugefügt");
-
-        do {
-
-            doAnotherIteration = false;
-
-            System.out.println("Wollen Sie noch ein weiteres Fach hinzufügen?\nGeben Sie 'y' für yes oder 'n' für no ein");
-            userInput = scan.nextLine().replace(" ", "");
-
-            while (!(userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("n"))) {
-                System.out.println("Bitte geben Sie 'y' für yes oder 'n' für no ein");
-                userInput = scan.nextLine();
-            }
-
-            if (userInput.equalsIgnoreCase("y")) {
-                System.out.println("Geben Sie ein Fach ein, dass Sie hinzufügen wollen");
-                userInput = scan.nextLine();
-                newFächer.add(new Unterrichtsfach(userInput));
-                System.out.println(userInput + " wurde hinzugefügt");
-                doAnotherIteration = true;
-            }
-
-        } while (doAnotherIteration == true);
-
-        return newFächer;
-    }
-
-    private ArrayList<Schüler> bestimmeSchüler() {
-        ArrayList<Schüler> newSchüler = new ArrayList<>();
-        String userInput;
-
-        boolean doAnotherIteration;
-
-        newSchüler = abfrageName(newSchüler);
-
-        do {
-
-            doAnotherIteration = false;
-
-            System.out.println("Wollen Sie noch einen weiteren Schüler hinzufügen?");
-            System.out.println("Geben Sie 'y' für yes oder 'n' für no ein");
-            userInput = scan.nextLine().replace(" ", "");
-
-            while (!(userInput.equalsIgnoreCase("y") || userInput.equalsIgnoreCase("n"))) {
-                System.out.println("Bitte geben Sie 'y' für yes oder 'n' für no ein");
-                userInput = scan.nextLine();
-            }
-
-            if (userInput.equalsIgnoreCase("y")) {
-                newSchüler = abfrageName(newSchüler);
-                doAnotherIteration = true;
-            }
-
-        } while (doAnotherIteration == true);
-
-        return newSchüler;
-    }
-
-    private ArrayList<Schüler> abfrageName(ArrayList<Schüler> newSchüler) {
-        String vorname;
-        String nachname;
-
-        System.out.println("Geben Sie den Vornamen des Schülers ein, den Sie hinzufügen wollen");
-
-        vorname = scan.nextLine();
-
-        System.out.println("Geben Sie den Nachnamen des Schülers ein, den Sie hinzufügen wollen");
-
-        nachname = scan.nextLine();
-
-        newSchüler.add(new Schüler(vorname, nachname));
-        System.out.println(vorname + " " + nachname + " wurde hinzugefügt");
-
-        return newSchüler;
-    }
-
-    private void addNote () {
-
-        Schulklasse schulklasse = new Schulklasse();
-
-
-
-        System.out.println("Geben Sie die Klasse ein von dem Sie die Note hinzufügen wollen");
-        if (schulklassen.contains(scan.nextLine().replace(" ", ""))) {
-
-
-
+        for (int i = 0; i < 2; i++) {
+            main.setSchulklassen(schulklasse.erstelleKlasse(main.getSchulklassen()));
         }
 
-        System.out.println("Geben Sie den Vornamen des Schülers ein von dem Sie die Note hinzufügen wollen");
-        if (scan.nextLine().replace(" ", "").equalsIgnoreCase(schulklasse.getName())) {
-
-
+        for (int i = 0; i < 4; i++) {
+            System.out.println(main.getSchulklassen().get(0).getSchüler().get(i).getVorname() + " "
+                    + main.getSchulklassen().get(0).getSchüler().get(i).getNachname());
         }
+        main.ausgabe();
+    }
 
+    public void ausgabe() {
+        Main main = new Main();
+        String tab = "   ";
+        for (int a = 0; a < schulklassen.size(); a++) {
+            Schulklasse schulklasse = schulklassen.get(a);
+            System.out.println("Name der Klasse: " + schulklasse.getName());
+            System.out.println(tab + "Notensystem: " + schulklasse.getNotensystem().getName());
 
+            for (int b = 0; b < schulklassen.get(a).getSchüler().size(); b++) {
+                System.out.println(tab + "Schüler: " + schulklassen.get(a).getSchüler().get(b).getVorname() +
+                        " " + schulklassen.get(a).getSchüler().get(b).getNachname());
 
+                for (int c = 0; c < schulklassen.get(a).getFächer().size(); c++) {
+                    System.out.println(tab + tab + "Fach: " + schulklassen.get(a).getFächer().get(c).getName());
+                    System.out.println(tab + tab + tab + "Fachnote: " + df.format(schulklassen.get(a).getSchüler().get(b).getFachnoten().get(0).getWert()));
 
-
+                    for (int d = 0; d < schulklassen.get(a).getSchüler().get(b).getFachnoten().get(c).getUnternoten().size(); d++) {
+                        System.out.println(tab + tab + tab + tab + "Unternote: " + df.format(schulklassen.get(a).getSchüler().get(b).getFachnoten().get(c).getUnternoten().get(d).getWert()));
+                    }
+                }
+            }
+        }
     }
 
     public ArrayList<Schulklasse> getSchulklassen() {
