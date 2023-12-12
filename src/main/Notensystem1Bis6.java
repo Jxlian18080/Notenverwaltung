@@ -1,3 +1,5 @@
+package main;
+
 public class Notensystem1Bis6 extends Notensystem {
 
     Notensystem1Bis6() {
@@ -22,7 +24,7 @@ public class Notensystem1Bis6 extends Notensystem {
             case 1:
                 return 98;
             default:
-                System.err.println("Note ist nicht zwischen 1 und 6");
+                System.err.println("main.Note ist nicht zwischen 1 und 6");
                 return -1;
         }
     }

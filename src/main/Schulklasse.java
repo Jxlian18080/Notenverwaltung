@@ -1,6 +1,6 @@
+package main;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 public class Schulklasse {
 
@@ -12,8 +12,6 @@ public class Schulklasse {
 
     private Notensystem notensystem;
 
-    private Random random = new Random();
-
 
     public Schulklasse(String name, ArrayList<Unterrichtsfach> fächer, Notensystem notensystem, ArrayList<Schüler> schüler) {
         this.name = name;
@@ -22,51 +20,15 @@ public class Schulklasse {
         this.schüler = schüler;
     }
 
+    public Schulklasse(String name, Notensystem notensystem) {
+        this.name = name;
+        this.notensystem = notensystem;
+    }
+
     public Schulklasse() {
 
     }
 
-    public ArrayList<Schulklasse> erstelleKlasse(ArrayList<Schulklasse> schulklassen) {
-
-        Main main = new Main();
-        Unterrichtsfach unterrichtsfach = new Unterrichtsfach();
-        Schüler schüler = new Schüler();
-        ArrayList<Schüler> schülerListe = new ArrayList<>();
-
-        String newName = "Klasse " + String.valueOf(1 + schulklassen.size());
-
-        Notensystem notensystem = bestimmeNotensystem();
-
-        ArrayList<Unterrichtsfach> fächer = unterrichtsfach.bestimmeFächer();
-
-        for(int i = 0; i < 4; i++) {
-            schülerListe.add(schüler.bestimmeSchüler(notensystem, fächer));
-        }
-
-        schulklassen.add(new Schulklasse(newName, fächer, notensystem, schülerListe));
-
-        return schulklassen;
-
-    }
-
-    private Notensystem bestimmeNotensystem() {
-
-
-        switch (random.nextInt(3)) {
-
-            case 0:
-                return new Notensystem1Bis6();
-
-            case 1:
-                return new Notensystem15Bis0();
-
-            case 2:
-                return new Notensystem100Bis0();
-
-        }
-
-        return null;
-    }
 
     public void getStudentSortedByLastName(ArrayList<Schüler> schüler) {
         // geht nicht

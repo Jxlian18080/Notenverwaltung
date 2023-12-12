@@ -1,3 +1,5 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,18 +28,7 @@ public class Note {
 
     }
 
-    public Note generiereNote(Notensystem notensystem, int numberUnternote) {
-        String newName = "unternote" + numberUnternote;
-        int newWert;
 
-        if (notensystem.getName().equals("1 bis 6")) {
-            newWert = 1 + random.nextInt(6);
-        } else {
-            newWert = random.nextInt(notensystem.getBesteNote() + 1);
-        }
-
-        return new Note(newName, newWert, null);
-    }
 
     public void addUnternote(Note unternote) {
 

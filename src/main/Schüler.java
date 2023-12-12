@@ -1,3 +1,5 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,28 +12,37 @@ public class Schüler {
 
    private ArrayList<FachNote> fachnoten;
 
+   private double notendurchschnitt;
+
    Random random = new Random();
 
-   public Schüler (String vorname, String nachname, ArrayList<FachNote> fachnoten){
+   public Schüler (String vorname, String nachname, ArrayList<FachNote> fachnoten, double notendurchschnitt){
 
       this.vorname = vorname;
       this.nachname = nachname;
       this.fachnoten = fachnoten;
+      this.notendurchschnitt = notendurchschnitt;
+   }
+
+   public Schüler (String vorname, String nachname) {
+      this.vorname = vorname;
+      this.nachname = nachname;
    }
 
    public Schüler() {
 
    }
 
-   public Schüler bestimmeSchüler(Notensystem notensystem, ArrayList<Unterrichtsfach> fächer) {
-      Schülernamen schülernamen = new Schülernamen();
-      FachNote fachNote = new FachNote();
-      String vorname = schülernamen.getVornamen().get(random.nextInt(20));
-      String nachname = schülernamen.getNachnamen().get(random.nextInt(20));
 
-      Schüler newSchüler = new Schüler(vorname, nachname, fachNote.bestimmeFachnoten(notensystem, fächer));
 
-      return newSchüler;
+   public double berechneNotendurchscnitt(ArrayList<FachNote> newFachnoten) {
+      double newNotendurchschnitt = 0;
+
+      for(FachNote fachNote : newFachnoten) {
+         newNotendurchschnitt += fachNote.getWert();
+      }
+
+      return newNotendurchschnitt / newFachnoten.size();
    }
 
    public void addNote(FachNote note){
@@ -81,6 +92,10 @@ public class Schüler {
    public Schüler setFachnoten(ArrayList<FachNote> fachnoten) {
       this.fachnoten = fachnoten;
       return this;
+   }
+
+   public double getNotendurchschnitt() {
+      return notendurchschnitt;
    }
 
 }

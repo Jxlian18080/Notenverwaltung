@@ -1,3 +1,5 @@
+package main;
+
 public class Notensystem15Bis0 extends Notensystem {
 
     Notensystem15Bis0() {
@@ -42,7 +44,7 @@ public class Notensystem15Bis0 extends Notensystem {
                 return 97.5;
 
             default:
-                System.err.println("Note ist nicht zwischen 15 und 0");
+                System.err.println("main.Note ist nicht zwischen 15 und 0");
                 return -1;
         }
 

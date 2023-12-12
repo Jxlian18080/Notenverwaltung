@@ -1,3 +1,5 @@
+package main;
+
 public class Notensystem100Bis0 extends Notensystem {
 
     Notensystem100Bis0() {
