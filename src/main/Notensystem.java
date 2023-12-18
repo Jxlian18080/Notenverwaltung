@@ -7,6 +7,7 @@ public abstract class Notensystem {
     private String name;
     private int besteNote;
     private int schlechtesteNote;
+
     private int inkrement;
 
     Random random = new Random();
@@ -30,6 +31,10 @@ public abstract class Notensystem {
 
     public int getSchlechtesteNote() {
         return schlechtesteNote;
+    }
+
+    public int getInkrement() {
+        return inkrement;
     }
 
 }

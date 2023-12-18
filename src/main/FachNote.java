@@ -9,17 +9,14 @@ public class FachNote extends Note {
 
     private Random random = new Random();
 
-    FachNote(Unterrichtsfach unterrichtsfach, double wert, ArrayList<Note> unternoten) {
+    public FachNote(Unterrichtsfach unterrichtsfach, double wert, ArrayList<Note> unternoten) {
         super(wert, unternoten);
         this.unterrichtsfach = unterrichtsfach;
     }
 
-    FachNote() {
+    public FachNote() {
 
     }
-
-
-
 
     public Unterrichtsfach getUnterrichtsfach() {
         return unterrichtsfach;

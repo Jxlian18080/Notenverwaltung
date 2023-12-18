@@ -30,16 +30,20 @@ public class Main {
         Main main = new Main();
         Unterrichtsfach unterrichtsfach = new Unterrichtsfach();
         Schüler schüler = new Schüler();
+        Schülernamen schülernamen = new Schülernamen();
         ArrayList<Schüler> schülerListe = new ArrayList<>();
 
         String newName = "Klasse " + String.valueOf(1 + schulklassen.size());
 
-        Notensystem notensystem = bestimmeNotensystem();
+        Notensystem notensystem = bestimmeNotensystem(random.nextInt(3));
 
         ArrayList<Unterrichtsfach> fächer = bestimmeFächer();
 
         for(int i = 0; i < 4; i++) {
-            schülerListe.add(bestimmeSchüler(notensystem, fächer));
+            String vorname = schülernamen.getVornamen().get(random.nextInt(20));
+            String nachname = schülernamen.getNachnamen().get(random.nextInt(20));
+            ArrayList<FachNote> newFachnoten = bestimmeFachnoten(notensystem, fächer);
+            schülerListe.add(bestimmeSchüler(notensystem, fächer, vorname, nachname, newFachnoten));
         }
 
         schulklassen.add(new Schulklasse(newName, fächer, notensystem, schülerListe));
@@ -47,10 +51,10 @@ public class Main {
         return schulklassen;
     }
 
-    private Notensystem bestimmeNotensystem() {
+    public Notensystem bestimmeNotensystem(int randomNumber) {
 
 
-        switch (random.nextInt(3)) {
+        switch (randomNumber) {
 
             case 0:
                 return new Notensystem1Bis6();
@@ -66,7 +70,7 @@ public class Main {
         return null;
     }
 
-    private ArrayList<Unterrichtsfach> bestimmeFächer() {
+    public ArrayList<Unterrichtsfach> bestimmeFächer() {
         ArrayList<Unterrichtsfach> newFächer = new ArrayList<>();
 
         newFächer.add(new Unterrichtsfach("Mathe"));
@@ -79,12 +83,9 @@ public class Main {
         return newFächer;
     }
 
-    private Schüler bestimmeSchüler(Notensystem notensystem, ArrayList<Unterrichtsfach> fächer) {
-        Schülernamen schülernamen = new Schülernamen();
+    public Schüler bestimmeSchüler(Notensystem notensystem, ArrayList<Unterrichtsfach> fächer, String vorname, String nachname, ArrayList<FachNote> newFachnoten) {
+
         Schüler schüler = new Schüler();
-        String vorname = schülernamen.getVornamen().get(random.nextInt(20));
-        String nachname = schülernamen.getNachnamen().get(random.nextInt(20));
-        ArrayList<FachNote> newFachnoten = bestimmeFachnoten(notensystem, fächer);
 
         Schüler newSchüler = new Schüler(vorname, nachname, newFachnoten, schüler.berechneNotendurchscnitt(newFachnoten));
 
@@ -103,7 +104,7 @@ public class Main {
         Note note = new Note();
         ArrayList<Note> newUnternoten = new ArrayList<>();
         Unterrichtsfach newUnterrichtsfach = aktuellesUnterrichtsfach;
-        double durchscnitt = 0;
+        double durchschnitt = 0;
 
 
         for (int i = 0; i < 2 + random.nextInt(3); i++) {
@@ -112,13 +113,13 @@ public class Main {
 
 
         for (Note aktuelleNote : newUnternoten) {
-            durchscnitt += aktuelleNote.getWert();
+            durchschnitt += aktuelleNote.getWert();
         }
 
 
-        durchscnitt = durchscnitt / newUnternoten.size();
+        durchschnitt = durchschnitt / newUnternoten.size();
 
-        return new FachNote(newUnterrichtsfach, durchscnitt, newUnternoten);
+        return new FachNote(newUnterrichtsfach, durchschnitt, newUnternoten);
     }
 
     public Note generiereNote(Notensystem notensystem, int numberUnternote) {
@@ -141,21 +142,21 @@ public class Main {
         for (int a = 0; a < schulklassen.size(); a++) {
             Schulklasse schulklasse = schulklassen.get(a);
             System.out.println("Name der Klasse: " + schulklasse.getName());
-            System.out.println(tab + "main.Notensystem: " + schulklasse.getNotensystem().getName());
+            System.out.println(tab + "Notensystem: " + schulklasse.getNotensystem().getName());
 
             for (int b = 0; b < schulklassen.get(a).getSchüler().size(); b++) {
-                System.out.println(tab + "main.Schüler: " + schulklassen.get(a).getSchüler().get(b).getVorname() +
+                System.out.println(tab + "Schüler: " + schulklassen.get(a).getSchüler().get(b).getVorname() +
                         " " + schulklassen.get(a).getSchüler().get(b).getNachname());
 
                 System.out.println(tab + "Schülerdurchschnitt: " + df.format(schulklassen.get(a).getSchüler().get(b).getNotendurchschnitt()));
 
                 for (int c = 0; c < schulklassen.get(a).getFächer().size(); c++) {
                     System.out.println(tab + tab + "Fach: " + schulklassen.get(a).getFächer().get(c).getName());
-                    System.out.println(tab + tab + tab + "Fachnote: " + df.format(schulklassen.get(a).getSchüler().get(b).getFachnoten().get(0).getWert()));
+                    System.out.println(tab + tab + tab + "Fachnote: " + df.format(schulklassen.get(a).getSchüler().get(b).getFachnoten().get(c).getWert()));
 
                     for (int d = 0; d < schulklassen.get(a).getSchüler().get(b).getFachnoten().get(c).getUnternoten().size(); d++) {
                         System.out.println(tab + tab + tab + tab + "Unternote: " + df.format(schulklassen.get(a).getSchüler().get(b).getFachnoten().get(c).getUnternoten().get(d).getWert()));
-
+                        
                     }
                 }
             }
