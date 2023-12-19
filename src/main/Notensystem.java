@@ -19,6 +19,7 @@ public abstract class Notensystem {
         this.inkrement = inkrement;
     }
 
+     // Die Note wird in Prozentzahl wiedergegeben
      public abstract double toPercent(int note);
 
     public String getName() {

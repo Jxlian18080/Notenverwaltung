@@ -28,21 +28,16 @@ public class Note {
 
     }
 
-
-
     public void addUnternote(Note unternote) {
-
 
     }
 
     public void removeUnternote(String name) {
 
-        //todo must be implemented
     }
 
     public void noteAusgeben() {
 
-        //todo must be implemented
     }
 
     public ArrayList<Note> getUnternoten() {

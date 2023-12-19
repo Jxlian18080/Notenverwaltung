@@ -16,10 +16,11 @@ public class Schüler {
 
    Random random = new Random();
 
-   public Schüler (String vorname, String nachname, ArrayList<FachNote> fachnoten, double notendurchschnitt){
+   public Schüler (String vorname, String nachname,  ArrayList<Unterrichtsfach> fächer, ArrayList<FachNote> fachnoten, double notendurchschnitt){
 
       this.vorname = vorname;
       this.nachname = nachname;
+      this.fächer = fächer;
       this.fachnoten = fachnoten;
       this.notendurchschnitt = notendurchschnitt;
    }
@@ -33,8 +34,7 @@ public class Schüler {
 
    }
 
-
-
+   // Notendurchschnitt wird berechnet
    public double berechneNotendurchscnitt(ArrayList<FachNote> newFachnoten) {
       double newNotendurchschnitt = 0;
 

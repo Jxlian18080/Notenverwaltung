@@ -13,7 +13,6 @@ public class Unterrichtsfach {
     }
 
 
-
     public String getName() {
         return name;
     }
